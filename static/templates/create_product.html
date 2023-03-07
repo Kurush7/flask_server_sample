@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<form name="forms" id="forms">
+    <h2>Создание товара</h2>
+    <fieldset>
+        <legend>Персональные данные</legend>
+        <ul>
+            <li>
+                <label for="name">name:*</label>
+                <input type="text" name="name" placeholder="name..." id="name" required>
+            </li>
+            <li>
+                <label for="uuid">uuid:*</label>
+                <input type="text" name="uuid" placeholder="12345..." id="uuid">
+            </li>
+            <li>
+                <label for="manufacturer_id">manufacturer id:*</label>
+                <input type="text" name="manufacturer_id" placeholder="12345..." id="manufacturer_id">
+            </li>
+        </ul>
+    </fieldset>
+    <div>
+        <button type="submit">Отправить</button>
+        <p>* — Обязательные поля</p>
+    </div>
+</form>
+
+<script>
+    // get the form element from dom
+    const formElement = document.querySelector('form#forms')
+
+    // convert the form to JSON
+    const getFormJSON = (form) => {
+        const data = new FormData(form);
+        return Array.from(data.keys()).reduce((result, key) => {
+            result[key] = data.get(key);
+            return result;
+        }, {});
+    };
+
+    // handle the form submission event, prevent default form behaviour, check validity, convert form to JSON
+    const handler = (event) => {
+        event.preventDefault();
+        const valid = formElement.reportValidity();
+        if (valid) {
+            const result = getFormJSON(formElement);
+
+            fetch("{{url}}/products", {
+                method: "POST",
+                body: JSON.stringify(result),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            });
+        }
+    }
+
+    formElement.addEventListener("submit", handler)
+</script>
+
+</body>
+</html>

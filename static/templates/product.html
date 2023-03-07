@@ -1,0 +1,13 @@
+{% macro print_product(product) %}
+<div>
+    <hr>
+    <h3>Product {{product.uuid}}</h3>
+    <p>uuid = {{product.uuid}}</p>
+    <p>name = {{product.name}}</p>
+    <p>price = {{product.price}}</p>
+    <p>rating = {{product.rating}}</p>
+    <p>count = {{product.count}}</p>
+    <p>description = {{product.description}}</p>
+    <hr>
+</div>
+{% endmacro %}

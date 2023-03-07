@@ -1,0 +1,6 @@
+Flask==2.0.1
+matplotlib==3.7.0
+numpy==1.23.5
+pandas==1.4.2
+qrconfig==1.0.5
+qrookDB==1.3.3.1

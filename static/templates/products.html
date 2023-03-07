@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+{% from 'product.html' import print_product %}
+
+<html lang="">
+  {% if title %}
+  <title>{{title}}</title>
+  {% endif %}
+
+  <body>
+  {% for product in products %}
+    {{ print_product(product) }}
+  {% endfor %}
+  </body>
+</html>
